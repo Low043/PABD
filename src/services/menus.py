@@ -68,8 +68,8 @@ class Image(ctk.CTkImage):
         super().__init__(image,image,size)
 
 class Container(ctk.CTkLabel):
-    def __init__(self,window,width=0,height=28,corner=0,color='transparent',textColor='white',text='',image=None):
-        super().__init__(window,width,height,corner,'transparent',color,textColor,None,text,None,image)
+    def __init__(self,window,width=0,height=28,corner=0,color='transparent',textColor='white',text='',image=None,font=None):
+        super().__init__(window,width,height,corner,'transparent',color,textColor,None,text,font,image)
 
 class ViewPassButton(Button):
     def __init__(self,window,passwordInput:Input,images:tuple[Image]):

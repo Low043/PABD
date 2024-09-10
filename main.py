@@ -4,7 +4,7 @@ from src.views import *
 
 class NFTStore(Menu):
     def __init__(self):
-        super().__init__('NFTStore','600x600')
+        super().__init__('NFTStore','500x500')
         self.database = Builder().connect()
 
         self.loginWindow = LoginWindow(self)
