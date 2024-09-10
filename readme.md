@@ -34,6 +34,8 @@ Requisitos do projeto e onde eles foram satisfeitos:
   - Volte o terminal para a pasta principal digitando "**cd ..**" duas vezes
   - Instale as dependências do projeto com o comando "**pip install -r requirements.txt**"
   - Execute o arquivo "**main.py**"
+
+OBS: Para que o programa funcione perfeitamente é necessário que se tenha o **PostgreSQL** instalado e gonfigurado com a senha "**pabd**". Caso seu Postgres esteja configurado de maneira diferente você deverá editar o arquivo **"src/services/builder.py"** para que coincida com suas configurações. **Mesmo que o banco de dados não tenha sido criado, o próprio programa se encarregará de criá-lo.**
  
 ## Sobre Escolhas
 Caso você avalie o código irá reparar na existência de um arquivo chamado "LittleCar.py" representando o carrinho do sistema.

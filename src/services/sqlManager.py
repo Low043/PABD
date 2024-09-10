@@ -3,6 +3,7 @@ import psycopg2
 class Database:
     def __init__(self,name:str,userName:str,hostName:str,password:str,port:int):
         self.connection = psycopg2.connect(database=name,user=userName,host=hostName,password=password,port=port)
+        self.connection.autocommit = True
         self.cursor = self.connection.cursor()
 
     def execute(self,sqlCommand:str):
@@ -45,9 +46,6 @@ class Database:
         if self.execute(sqlCommand):
             return self.cursor.fetchall()
         return False
-
-    def save(self):
-        self.connection.commit()
 
     def close(self):
         self.cursor.close()
