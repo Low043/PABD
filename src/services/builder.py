@@ -18,4 +18,22 @@ class Builder:
         database = Database('postgres',self.userName,self.host,self.password,self.port)
         database.execute(f'CREATE DATABASE {self.databaseName}')
         database.close()
-        return Database(self.databaseName,self.userName,self.host,self.password,self.port)
+
+        database = Database(self.databaseName,self.userName,self.host,self.password,self.port)
+        
+        database.createTable('Users',pk='userID',columns=[
+            Varchar('userName',size=20),
+            Varchar('userPass',size=20)
+        ])
+
+        database.createTable('Nfts',pk='nftID',columns=[
+            Varchar('nftName',size=20),
+            Float('nftPrice')
+        ])
+
+        database.createTable('Purchases',pk='purchaseID',columns=[
+            Fk('userID',referenceTable='Users',referenceVar='userID'),
+            Fk('nftID',referenceTable='Nfts',referenceVar='nftID'),
+            Int('amount'),
+            Bool('effected')
+        ])

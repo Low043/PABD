@@ -40,7 +40,7 @@ class Window(ctk.CTkFrame):
 class Button(ctk.CTkButton):
     def __init__(self,window,text='Button',func=None,width=140,height=28,corner=7,color='#1e539e',textColor='white',hoverColor='#133666',borderColor='black',hover=True,border=0,image=None):
         var = None if type(text) != ctk.StringVar else text
-        super().__init__(window,width,height,corner,border,2,'transparent',color,hoverColor,borderColor,textColor,None,None,True,True,text,None,var,image,'normal',hover,func)
+        super().__init__(window,width,height,corner,border,2,'transparent',color,hoverColor,borderColor,textColor,None,None,True,True,text,None,var,image,'normal',hover,func,cursor='hand2')
 
 class Input(ctk.CTkEntry):
     def __init__(self,window,placeHolder=None,password=False,width=140,height=28,corner=7,color='#343638',textColor='white',borderColor='#565b5e',border=2,justify='center',limitChar=13):

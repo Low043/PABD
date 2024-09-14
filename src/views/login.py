@@ -4,9 +4,6 @@ class LoginWindow(Window):
     def __init__(self,app):
         super().__init__(app,'Login')
 
-        close = Button(self,'voltar')
-        self.addElement(close,8,0)
-
         title = Container(self,text='NFTStore',font=('Arial',32))
         self.addElement(title,3,2,3)
 
@@ -20,4 +17,4 @@ class LoginWindow(Window):
         self.addElement(login,2,6,5,expandTo='ew')
 
         register = Button(self,'Criar usuário',color='transparent',hover=False)
-        self.addElement(register,3,7,3)
+        self.addElement(register,3,7,3,expandTo='')
