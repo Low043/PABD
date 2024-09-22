@@ -20,18 +20,21 @@ class Builder:
         database.close()
 
         database = Database(self.databaseName,self.userName,self.host,self.password,self.port)
-        
-        database.createTable('Users',pk='userID',columns=[
+
+        database.createTable('Users',columns=[
+            Pk('userID'),
             Varchar('userName',size=20),
             Varchar('userPass',size=20)
         ])
 
-        database.createTable('Nfts',pk='nftID',columns=[
+        database.createTable('Nfts',columns=[
+            Pk('nftID'),
             Varchar('nftName',size=20),
             Float('nftPrice')
         ])
 
-        database.createTable('Purchases',pk='purchaseID',columns=[
+        database.createTable('Purchases',columns=[
+            Pk('purchaseID'),
             Fk('userID',referenceTable='Users',referenceVar='userID'),
             Fk('nftID',referenceTable='Nfts',referenceVar='nftID'),
             Int('amount'),
