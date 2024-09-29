@@ -10,12 +10,12 @@ class NFTStore(Menu):
         #Instancia todas as janelas do programa e adiciona elas ao Menu
         self.loginWindow = LoginWindow(self)
         self.registerWindow = RegisterWindow(self)
-        self.storeWindow = StoreWindow(self)
+        self.feedWindow = FeedWindow(self)
         self.littleCarWindow = LittleCarWindow(self)
 
         self.addWindow(self.loginWindow)
         self.addWindow(self.registerWindow)
-        self.addWindow(self.storeWindow)
+        self.addWindow(self.feedWindow)
         self.addWindow(self.littleCarWindow)
 
 app = NFTStore()

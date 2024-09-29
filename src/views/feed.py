@@ -1,5 +1,5 @@
 from src.services import *
 
-class StoreWindow(Window):
+class FeedWindow(Window):
     def __init__(self,app):
         super().__init__(app,'Store')

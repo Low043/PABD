@@ -38,6 +38,4 @@ Requisitos do projeto e onde eles foram satisfeitos:
 OBS: Para que o programa funcione perfeitamente é necessário que se tenha o **PostgreSQL** instalado e gonfigurado com a senha "**pabd**". Caso seu Postgres esteja configurado de maneira diferente você deverá editar o arquivo **"src/services/builder.py"** para que coincida com suas configurações. **Mesmo que o banco de dados não tenha sido criado, o próprio programa se encarregará de criá-lo.**
  
 ## Sobre o Desenvolvimento
-Grande parte do código usado no projeto foi reaproveitado de projetos antigos, tentei reformular algumas coisas e adicionar comentários explicativos para melhorar a experiência de quem tentar entender, mas não garanto que todas as partes do código possam ser entendidas facilmente, algumas coisas simplesmente vem com a experiência e linhas que parecem não fazer sentido podem simplesmente ser uma prática comum em alguma biblioteca.
-
-Sempre que precisei referenciar o "carrinho" no código eu usei o nome "little car". Para mim esse é o auge do humor hahaha, piadas.
+Parte dos códigos utilizados neste projeto (principalmente relacionados a criação do Menu) foram reaproveitados de projetos antigos. Adicionei alguns comentários explicativos mas algumas coisas podem ter ficado de fora, qualquer dúvida quanto ao funcionamento de alguma função pode ser esclarecida pessoalmente.

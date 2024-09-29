@@ -59,7 +59,7 @@ class Database:
         self.cursor.close()
         self.connection.close()
 
-#Tipos de dados SQL e suas representações em String para fascilitar o createTable()
+#Tipos de dados SQL e suas representações em String para facilitar o createTable()
 class Pk(SqlVar):
     def __init__(self,name:str,type:str='SERIAL'):
         super().__init__(name)
