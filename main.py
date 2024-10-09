@@ -13,5 +13,5 @@ class NFTStore:
         self.cart = CartView()
 
 #Init Login View
-webview.create_window("NFTStore", "src/views/login/index.html",js_api=NFTStore())
+webview.create_window("NFTStore", "src/views/login/index.html",js_api=NFTStore(),width=600,height=600,min_size=(600,600))
 webview.start()
