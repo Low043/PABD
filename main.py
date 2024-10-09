@@ -1,22 +1,17 @@
-from src.services import *
-from src.models import *
+from src.services.builder import *
 from src.views import *
+import webview
 
-class NFTStore(Menu):
-    def __init__(self):#Cria um Menu chamado NFTStore que possui 500px de largura e 500px de altura
-        super().__init__('NFTStore','500x500')
-        self.database = Builder().connect()#Se conecta ao banco de dados
+class NFTStore:
+    def __init__(self):
+        self.database = Builder().connect()#Connect to database (create if not exists)
 
-        #Instancia todas as janelas do programa e adiciona elas ao Menu
-        self.loginWindow = LoginWindow(self)
-        self.registerWindow = RegisterWindow(self)
-        self.feedWindow = FeedWindow(self)
-        self.littleCarWindow = LittleCarWindow(self)
+        #View classes
+        self.login = LoginView()
+        self.register = RegisterView()
+        self.feed = FeedView()
+        self.cart = CartView()
 
-        self.addWindow(self.loginWindow)
-        self.addWindow(self.registerWindow)
-        self.addWindow(self.feedWindow)
-        self.addWindow(self.littleCarWindow)
-
-app = NFTStore()
-app.mainloop()
+#Init Login View
+webview.create_window("NFTStore", "src/views/login/index.html",js_api=NFTStore())
+webview.start()

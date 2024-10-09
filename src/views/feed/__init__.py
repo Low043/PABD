@@ -1,0 +1,2 @@
+class FeedView:
+    pass

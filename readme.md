@@ -31,6 +31,7 @@ Requisitos do projeto e onde eles foram satisfeitos:
     - "**cd .venv**"
     - "**cd Scripts**"
     - "**./activate**"
+    OBS: Em alguns casos, o terminal não possui permissão de executar ./activate, este erro pode ser resolvido digitando "**Set-ExecutionPolicy RemoteSigned**" no PowerShell do Windows em modo de administrador.
   - Volte o terminal para a pasta principal digitando "**cd ..**" duas vezes
   - Instale as dependências do projeto com o comando "**pip install -r requirements.txt**"
   - Execute o arquivo "**main.py**"
@@ -38,4 +39,4 @@ Requisitos do projeto e onde eles foram satisfeitos:
 OBS: Para que o programa funcione perfeitamente é necessário que se tenha o **PostgreSQL** instalado e gonfigurado com a senha "**pabd**". Caso seu Postgres esteja configurado de maneira diferente você deverá editar o arquivo **"src/services/builder.py"** para que coincida com suas configurações. **Mesmo que o banco de dados não tenha sido criado, o próprio programa se encarregará de criá-lo.**
  
 ## Sobre o Desenvolvimento
-Parte dos códigos utilizados neste projeto (principalmente relacionados a criação do Menu) foram reaproveitados de projetos antigos. Adicionei alguns comentários explicativos mas algumas coisas podem ter ficado de fora, qualquer dúvida quanto ao funcionamento de alguma função pode ser esclarecida pessoalmente.
+Parte dos códigos utilizados neste projeto foram reaproveitados de trabalhos antigos (por isso algumas partes estão em inglês e outra em português). Adicionei alguns comentários explicativos mas algumas coisas podem ter ficado de fora, qualquer dúvida quanto ao funcionamento de alguma função pode ser esclarecida pessoalmente.
