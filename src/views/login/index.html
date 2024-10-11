@@ -3,7 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+        }
+
+        body {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 300px;
+        }
+
+        h1, a {
+            align-self: center;
+        }
+    </style>
 </head>
 <body>
 
@@ -11,14 +32,28 @@
         <h1>NFTStore</h1>
 
         <p>Usuário</p>
-        <input type="text">
+        <input type="text" id="User">
 
         <p>Senha</p>
-        <input type="text">
+        <input type="text" id="Password">
 
-        <button>Fazer Login</button>
-        <a href="#">Criar Conta</a>
+        <button onclick="login()">Fazer Login</button>
+        <a href="src/views/register/index.html">Criar Conta</a>
     </main>
 
 </body>
+
+<script>
+    async function login(){
+        document.location = 'src/views/cart/index.html'
+        const user = document.getElementById('User').value;
+        const password = document.getElementById('Password').value;
+        
+        const authenticate = await pywebview.api.login.authenticate(user,password);
+        if(authenticate){
+            document.location.href = 'src/views/cart/index.html'
+        }
+    }
+</script>
+
 </html>

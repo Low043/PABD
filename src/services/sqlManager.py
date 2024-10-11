@@ -1,3 +1,4 @@
+from termcolor import colored
 import psycopg2
 
 class SqlVar:#Base para a representação dos tipos de dados SQL
@@ -17,8 +18,10 @@ class Database:
     def execute(self,sqlCommand:str):#Executa um comando sql e retorna se ele foi bem sucedido ou não
         try:
             self.cursor.execute(sqlCommand)
+            print(colored(sqlCommand,'light_green'))
             return True
-        except:
+        except Exception as e:
+            print(colored(e,'red'))
             return False
 
     def createTable(self,tableName:str,columns:list[SqlVar]):
@@ -46,10 +49,18 @@ class Database:
 
         return self.execute(sqlCommand)
     
-    def getFrom(self,tableName:str,columns:list[str]='*',where:str=''):#Retorna uma tupla de ocorrências em uma tabela
+    def getFrom(self,tableName:str,columns:list[str]='*',where:list[tuple]=[]):#Retorna uma tupla de ocorrências em uma tabela
         if type(columns) == list:
             columns = f'({",".join(columns)})'
-        sqlCommand = f'SELECT {columns} FROM {tableName} {f"WHERE {where}" if where else ""}'
+
+        newWhere = []#Coloca aspas em valores que são strings
+        for item in where:
+            if type(item[1]) == str:
+                newWhere.append(f"{item[0].lower()} = '{item[1]}'")
+            else:
+                newWhere.append(f'{item[0].lower()} = {item[1]}')
+
+        sqlCommand = f'SELECT {columns} FROM {tableName.lower()} {f"WHERE {' AND '.join(newWhere)}" if newWhere else ""}'
 
         if self.execute(sqlCommand):
             return self.cursor.fetchall()
