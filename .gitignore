@@ -1,0 +1,8 @@
+#Ambiente virtual
+.venv/
+
+#Pastas de cache
+__pycache__/
+
+#Pasta de teste
+tests/
