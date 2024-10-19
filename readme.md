@@ -36,5 +36,10 @@ Requisitos do projeto e onde eles foram satisfeitos:
   - Instale as dependências do projeto com o comando "**pip install -r requirements.txt**"
   - Execute o arquivo "**main.py**"
 
+## Fazer Login
+O programa não possui nenhum método para criar usuários, porém, são criados dois usuários de teste junto ao banco de dados, são eles:
+- `Daniel` senha: `pabd`
+- `Luis` senha: `desalojado`
+
 > [!WARNING]  
 > Para que o programa funcione perfeitamente é necessário que se tenha o **PostgreSQL** instalado e gonfigurado com a senha "**pabd**". Caso seu Postgres esteja configurado de maneira diferente você deverá editar o arquivo **"src/services/builder.py"** para que coincida com suas configurações. **Mesmo que o banco de dados não tenha sido criado, o próprio programa se encarregará de criá-lo.**
