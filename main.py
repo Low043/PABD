@@ -7,7 +7,11 @@ class Desalojados(tk.Tk):
         super().__init__()
         self.title('Desalojados')
         self.geometry('400x400')
+        self.resizable(False,False)
+        self.grid_rowconfigure(0, weight=1)
+        self.grid_columnconfigure(0, weight=1)
         self.database = Builder().connect()#Realiza a conexão com o banco de dados (cria caso não exista)
+        self.user = None
 
         #Cria uma lista de Frames (views) e posiciona-os um em cima do outro
         self.views : list[tk.Frame] = [LoginView(self), FeedView(self), EditView(self), AddView(self)]

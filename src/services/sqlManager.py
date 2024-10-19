@@ -30,9 +30,17 @@ class Database:
 
         return self.execute(sqlCommand)
 
-    def insertIn(self,tableName:str,columns:list[str],values:list[str]):
+    def insertIn(self,tableName:str,columns:list[str],values:list):
         columns = ','.join(columns)#Transforma as listas de SqlVar em strings separadas por vírgula
-        values = ','.join(values)
+        
+        newValues = []
+        for value in values:
+            if type(value) == str:
+                newValues.append(f"'{value}'")
+            else:
+                newValues.append(value)
+
+        values = ','.join(newValues)
         sqlCommand = f'INSERT INTO {tableName} ({columns}) VALUES ({values})'
 
         return self.execute(sqlCommand)

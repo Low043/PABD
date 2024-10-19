@@ -8,7 +8,7 @@ class Builder:
         self.password = 'pabd'
         self.port = 5432
 
-    def connect(self):
+    def connect(self) -> Database:
         try:#Tenta acessar o banco de dados
             return Database(self.databaseName,self.userName,self.host,self.password,self.port)
         except:#Caso haja algum erro (banco de dados não existe) cria o banco de dados
@@ -39,5 +39,8 @@ class Builder:
             Fk('houseID',referenceTable='Houses',referenceVar='houseID'),
             Int('rentingTime')
         ])
+
+        database.insertIn('Users',['userName','userPassword'],values=['Daniel','pabd'])
+        database.insertIn('Users',['userName','userPassword'],values=['Luis','desalojado'])
 
         return database
