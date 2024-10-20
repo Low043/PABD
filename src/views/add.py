@@ -12,11 +12,11 @@ class AddView(tk.Frame):
         backButton.grid(row=0, column=0, sticky='w', padx=5, pady=5)
 
         addressLabel = tk.Label(self, text='Endereço:')
-        addressLabel.grid(row=1, column=0, padx=50, pady=10, sticky='w')
+        addressLabel.grid(row=1, column=0, padx=50, pady=(120,0), sticky='w')
 
         #Adiciona uma 'validação de entrada' que impede entradas maiores que 50 dígitos
         self.addressEntry = tk.Entry(self, validate='key', validatecommand=(self.register(self.validateAddress), '%P'))
-        self.addressEntry.grid(row=2, column=0, padx=50, pady=10, sticky='ew')
+        self.addressEntry.grid(row=2, column=0, padx=50, pady=10, sticky='ewn')
 
         addButton = tk.Button(self, text='Adicionar', command=self.addHouse)
         addButton.grid(row=3, column=0, padx=50, pady=20, ipady=5, sticky='ew')

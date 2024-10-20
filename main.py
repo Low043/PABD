@@ -32,5 +32,5 @@ class Desalojados(tk.Tk):#Janela principal e configurações iniciais do program
             view.constructor()
 
 #Instanciando e iniciando o programa
-desalojados = Desalojados(user=User((2,'Luis','desalojado')),startAtView=0)
+desalojados = Desalojados(user=User((2,'Luis','desalojado')),startAtView=3)
 desalojados.mainloop()
