@@ -29,7 +29,7 @@ class Builder:
 
         database.createTable('Houses',columns=[
             Pk('houseID'),
-            Varchar('address',size=20),
+            Varchar('address',size=50),
             Bool('available')
         ])
 
@@ -42,5 +42,9 @@ class Builder:
 
         database.insertIn('Users',['userName','userPassword'],values=['Daniel','pabd'])
         database.insertIn('Users',['userName','userPassword'],values=['Luis','desalojado'])
+        
+        database.insertIn('Houses',['address','available'],['Rua Trabalho de Última Hora, nº70',True])
+        database.insertIn('Houses',['address','available'],['Rua Daniel Me Dá Nota Máxima, nº38',True])
+        database.insertIn('Houses',['address','available'],['Rua João Félix de Nascimento, nº129',True])
 
         return database

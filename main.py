@@ -22,6 +22,10 @@ class Desalojados(tk.Tk):
 
     def setView(self,view:tk.Frame):#Coloca uma view acima das outras
         view.tkraise()
+        try:#Algumas janelas podem precisar buscar informações no banco de dados antes de iniciar, isso é feito no método constructor()
+            view.constructor()
+        except:
+            pass
 
 #Instanciando e iniciando o programa
 desalojados = Desalojados()

@@ -38,7 +38,7 @@ class Database:
             if type(value) == str:
                 newValues.append(f"'{value}'")
             else:
-                newValues.append(value)
+                newValues.append(str(value))
 
         values = ','.join(newValues)
         sqlCommand = f'INSERT INTO {tableName} ({columns}) VALUES ({values})'
