@@ -68,7 +68,7 @@ class Database:
         
         return self.execute(sqlCommand)
     
-    def deleteIn(self,tableName:str,where:list[tuple]):#Apaga elementos de uma tabela
+    def deleteFrom(self,tableName:str,where:list[tuple]):#Apaga elementos de uma tabela
         where = self.columnValue(where)
 
         sqlCommand = f'DELETE FROM {tableName} WHERE {' AND '.join(where)}'
