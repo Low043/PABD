@@ -12,13 +12,14 @@ class Desalojados(tk.Tk):
         self.grid_columnconfigure(0, weight=1)
         self.database = Builder().connect()#Realiza a conexão com o banco de dados (cria caso não exista)
         self.user = None
+        self.user = User((2,'Luis','desalojado'))
 
         #Cria uma lista de Frames (views) e posiciona-os um em cima do outro
         self.views : list[tk.Frame] = [LoginView(self), FeedView(self), EditView(self), AddView(self)]
         for view in self.views:
             view.grid(row=0,column=0,sticky='nsew')
 
-        self.setView(self.views[0])#Coloca a tela de login acima das outras
+        self.setView(self.views[1])#Coloca a tela de login acima das outras
 
     def setView(self,view:tk.Frame):#Coloca uma view acima das outras
         view.tkraise()

@@ -31,11 +31,17 @@ class FeedView(tk.Frame):
         rentTimeLabel = tk.Label(self, text='Dias de aluguel:')
         rentTimeLabel.grid(row=2, column=0, pady=10)
 
-        self.rentTimeEntry = tk.Entry(self)
+        self.rentTimeEntry = tk.Entry(self, validate='key', validatecommand=(self.register(self.validateRentTime), '%P'))
         self.rentTimeEntry.grid(row=2, column=1, pady=10)
 
         rentButton = tk.Button(self, text='Alugar', command=self.rent)
         rentButton.grid(row=2, column=2, pady=10)
+
+    def validateRentTime(self, input:str):
+        if input.isdigit() and len(input) <= 3 or input == '':
+            return True
+        else:
+            return False
 
     def backToLogin(self):
         self.master.setView(self.master.views[0])
@@ -49,10 +55,12 @@ class FeedView(tk.Frame):
     def rent(self):
         houseSelected = self.houseList.curselection()
         if houseSelected:
-            houseSelected = self.houseList.get(houseSelected)
+            houseSelected = House(self.master.database.getFrom('Houses',where=[('address',self.houseList.get(houseSelected))])[0])
             rentTime = self.rentTimeEntry.get()
             if rentTime:
-                print(f'Alugando o imóvel: {houseSelected} por {rentTime} dias')
+                self.master.database.insertIn('Rentings',['userID','houseID','rentingTime'],values=[self.master.user.id,houseSelected.id,int(rentTime)])
+                self.master.database.update('available',inTable='Houses',where=[('houseID',houseSelected.id)],setValue=False)
+                self.constructor()
             else:
                 messagebox.showerror("Erro de Aluguel", "Defina um período de aluguel")
         else:

@@ -45,10 +45,18 @@ class Database:
 
         return self.execute(sqlCommand)
     
-    def update(self,columnName:str,inTable:str,where:str,setValue):#Atualiza valores já existentes em uma tabela
+    def update(self,columnName:str,inTable:str,where:list[tuple],setValue):#Atualiza valores já existentes em uma tabela
         if type(setValue) == str:
             setValue = f'"{setValue}"'
-        sqlCommand = f'UPDATE {inTable} SET {columnName}={setValue} WHERE {where}'
+        
+        newWhere = []
+        for item in where:
+            if type(item[1]) == str:
+                newWhere.append(f"{item[0].lower()} = '{item[1]}'")
+            else:
+                newWhere.append(f'{item[0].lower()} = {item[1]}')
+            
+        sqlCommand = f'UPDATE {inTable} SET {columnName}={setValue} WHERE {' AND '.join(newWhere)}'
 
         return self.execute(sqlCommand)
     
