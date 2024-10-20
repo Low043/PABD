@@ -40,7 +40,7 @@ class AddView(tk.Frame):
         if address == '':
             return messagebox.showerror('Erro', 'O campo de endereço está vazio!')
 
-        self.master.database.insertIn('Houses', ['address', 'available'], values=[address, True])
+        self.master.database.insertIn('Houses', ['owner','address', 'available'], values=[self.master.user.id,address,True])
 
         #Limpa o endereço
         self.addressEntry.delete(0, tk.END)

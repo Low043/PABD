@@ -29,6 +29,7 @@ class Builder:
 
         database.createTable('Houses',columns=[
             Pk('houseID'),
+            Fk('owner',referenceTable='Users',referenceVar='userID'),
             Varchar('address',size=50),
             Bool('available')
         ])

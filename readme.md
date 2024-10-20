@@ -10,8 +10,8 @@ Meu projeto consiste em um app de aluguel de imóveis dividido em 4 telas:
 Requisitos do projeto e onde eles foram satisfeitos:
 - :white_check_mark: CRUD
   - :white_check_mark: CREATE (Adicionar casas para alugar)
-  - :white_check_mark: READ (Visualizar casas alugadas pelo usuário)
-  - :white_check_mark: UPDATE (Editar período de aluguel)
+  - :white_check_mark: READ (Visualizar casas disponíveis e alugadas pelo usuário)
+  - :white_check_mark: UPDATE (Editar disponibilidade de casa e período de aluguel)
   - :white_check_mark: DELETE (Remover casa)
 - :white_check_mark: 4 Telas no mínimo (login, feed, "carrinho" e alugar)
 - :white_check_mark: 3 Tabelas no mínimo (Usuários, Casas e Alugueis)
