@@ -1,7 +1,7 @@
 from src.services.sqlManager import *
 
 class Builder:
-    def __init__(self):
+    def __init__(self):#Configurações do banco de dados (altere caso necessário)
         self.databaseName = 'desalojados'
         self.userName = 'postgres'
         self.host = 'localhost'
@@ -14,7 +14,7 @@ class Builder:
         except:#Caso haja algum erro (banco de dados não existe) cria o banco de dados
             return self.createDatabase()
         
-    def createDatabase(self):#Acessa o banco de dados padrão (postgres) e cria o banco de dados desalojados
+    def createDatabase(self):#Acessa o banco de dados padrão (postgres) e constrói o banco de dados desalojados
         database = Database('postgres',self.userName,self.host,self.password,self.port)
         database.execute(f'CREATE DATABASE {self.databaseName}')
         database.close()

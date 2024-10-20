@@ -32,9 +32,9 @@ class LoginView(tk.Frame):
         if user == '' or password == '':
             return messagebox.showerror('Erro de Login', 'Usuário ou senha em branco')
         
-        try:
+        try:#Tenta acessar o primeiro usuário que corresponda ao usuário e senha digitados
             result = self.master.database.getFrom('Users',where=[('userName',user),('userPassword',password)])[0]
             self.master.user = User(result)
             self.master.setView(self.master.views[1])
-        except:
+        except:#Caso esse usuário não exista, ocorre um erro por tentar acessar um valor inválido em uma lista
             messagebox.showerror('Erro de Login', 'Usuário ou senha incorretos')
