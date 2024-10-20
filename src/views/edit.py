@@ -7,7 +7,7 @@ class EditView(tk.Frame):
         super().__init__()
         self.master = master
         self.grid_rowconfigure(2, weight=1)
-        self.grid_columnconfigure(0, weight=1)
+        self.grid_columnconfigure(list(range(2)), weight=1)
 
         backButton = tk.Button(self, text='Voltar', command=self.backToFeed)
         backButton.grid(row=0, column=0, sticky='w', padx=5, pady=5)
@@ -16,7 +16,7 @@ class EditView(tk.Frame):
         rentedLabel.grid(row=1, column=0, padx=5, pady=5, sticky='w')
 
         rentedFrame = tk.Frame(self)
-        rentedFrame.grid(row=2, column=0, padx=5, pady=5, sticky='nsew')
+        rentedFrame.grid(row=2, column=0, padx=5, pady=5, sticky='nsew', columnspan=2)
 
         rentedScrollbar = tk.Scrollbar(rentedFrame, orient='vertical')
         self.rentedList = tk.Listbox(rentedFrame, yscrollcommand=rentedScrollbar.set, height=5)
@@ -28,16 +28,19 @@ class EditView(tk.Frame):
         rentTimeLabel.grid(row=3, column=0, padx=5, pady=5, sticky='w')
 
         self.rentTimeEntry = tk.Entry(self, validate='key', validatecommand=(self.register(self.validateRentTime), '%P'))
-        self.rentTimeEntry.grid(row=4, column=0, padx=5, pady=5, sticky='ew')
+        self.rentTimeEntry.grid(row=4, column=0, padx=5, pady=5, sticky='ew', columnspan=2)
 
         editRentButton = tk.Button(self, text='Editar Aluguel', command=self.editRent)
         editRentButton.grid(row=5, column=0, padx=5, pady=5, sticky='ew')
+
+        cancelRentButton = tk.Button(self, text='Cancelar Aluguel', command=self.cancelRent)
+        cancelRentButton.grid(row=5, column=1, padx=5, pady=5, sticky='ew')
 
         ownedLabel = tk.Label(self, text='Casas Disponíveis para Alugar:')
         ownedLabel.grid(row=6, column=0, padx=5, pady=5, sticky='w')
 
         ownedFrame = tk.Frame(self)
-        ownedFrame.grid(row=7, column=0, padx=5, pady=5, sticky='nsew')
+        ownedFrame.grid(row=7, column=0, padx=5, pady=5, sticky='nsew', columnspan=2)
 
         ownedScrollbar = tk.Scrollbar(ownedFrame, orient='vertical')
         self.ownedList = tk.Listbox(ownedFrame, yscrollcommand=ownedScrollbar.set, height=5)
@@ -46,7 +49,7 @@ class EditView(tk.Frame):
         ownedScrollbar.pack(side='right', fill='y')
 
         removeOwnedButton = tk.Button(self, text='Remover Casa', command=self.removeOwnedHouse)
-        removeOwnedButton.grid(row=8, column=0, padx=5, pady=5, sticky='ew')
+        removeOwnedButton.grid(row=8, column=0, padx=5, pady=5, sticky='ew', columnspan=2)
 
     def validateRentTime(self, input:str):#Regra de validação do tempo de aluguel
         if input.isdigit() and len(input) <= 3 or input == '':
@@ -87,7 +90,7 @@ class EditView(tk.Frame):
         houseAddress = self.rentedList.get(selected).split(' (')[0]
         house = self.master.database.getFrom('Houses', where=[('address', houseAddress)])[0]
 
-        self.master.database.update('Rentings', setValues=[('rentingTime', int(rentTime))], where=[('userID', self.master.user.id), ('houseID', house[0])])
+        self.master.database.update('Rentings', setValues=[('rentingTime', int(rentTime))], where=[('houseID', house[0])])
 
         #Atualiza o item específico da lista com o novo tempo de aluguel
         updatedText = f'{houseAddress} (Alugado por {rentTime} dias)'
@@ -97,6 +100,21 @@ class EditView(tk.Frame):
         self.rentTimeEntry.delete(0, tk.END)#Limpa a entrada de dias
         messagebox.showinfo('Sucesso', 'Tempo de aluguel atualizado com sucesso')
 
+    def cancelRent(self):#Cancela um aluguel (volta o status de available)
+        selected = self.rentedList.curselection()
+
+        if not selected:
+            return messagebox.showerror('Erro', 'Selecione uma casa para cancelar o aluguel')
+
+        houseAddress = self.rentedList.get(selected).split(' (')[0]
+        house = House(self.master.database.getFrom('Houses', where=[('address', houseAddress)])[0])
+
+        self.master.database.update('Houses', setValues=[('available', True)], where=[('houseID', house.id)])
+        self.master.database.deleteFrom('Rentings',where=[('userID',self.master.user.id),('houseID',house.id)])
+
+        self.rentedList.delete(selected)#Apaga da lista
+
+        messagebox.showinfo('Sucesso', 'Aluguel cancelado com sucesso')
 
     def removeOwnedHouse(self):
         selected = self.ownedList.curselection()

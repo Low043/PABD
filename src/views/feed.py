@@ -72,6 +72,7 @@ class FeedView(tk.Frame):
         self.master.database.update('Houses',setValues=[('available',False)],where=[('houseID',houseSelected.id)])
 
         self.houseList.delete(selected)#Remove a casa alugada da lista de casas disponíveis
+        self.rentTimeEntry.delete(0, tk.END)
 
     def constructor(self):
         self.houseList.delete(0, tk.END)
